@@ -1,0 +1,16 @@
+type Product {
+    id: ID!
+    name: String
+    variants: [ProductVariant!]
+}
+
+type ProductVariant {
+    sku: String!
+    size: String
+    stock: Int
+}
+
+type Query {
+    productById(id: ID!): Product
+    products(ids: [ID!]): [Product!]
+}
