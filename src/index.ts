@@ -1,6 +1,7 @@
 import { ApolloServer, gql } from 'apollo-server';
 import { readFileSync } from 'fs';
 import { resolvers } from './resolvers';
+import { buildProductDataloader } from './fixtures/products';
 import { buildProductVariantDataloader } from './fixtures/variants';
 
 const schema = `${__dirname}/schema.graphql`;
@@ -13,6 +14,7 @@ const server = new ApolloServer({
     introspection: true,
     context: () => ({
         loaders: {
+            product: buildProductDataloader(),
             variant: buildProductVariantDataloader(),
         }
     }),

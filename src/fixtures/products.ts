@@ -1,4 +1,5 @@
 import { isEmpty } from 'lodash';
+import DataLoader from 'dataloader';
 
 export type Product = {
     id: string;
@@ -48,3 +49,7 @@ export const products = {
         return data.filter(product => ids.includes(product.id));
     },
 };
+
+export const buildProductDataloader = () => new DataLoader<string, Product | null>(
+    async (keys: ReadonlyArray<string>) => products.findAll(keys as string[], true),
+);
