@@ -7,7 +7,9 @@
   "license": "MIT",
   "main": "src/index.ts",
   "scripts": {
-    "start": "ts-node-dev --clear --files ./src --respawn src/index.ts"
+    "start": "ts-node-dev --clear --files ./src --respawn src/index.ts",
+    "demo1": "git checkout demo_1 && yarn start",
+    "demo2": "git checkout demo_2 && yarn start"
   },
   "dependencies": {
     "@types/lodash": "^4.14.178",
