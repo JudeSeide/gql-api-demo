@@ -1,6 +1,6 @@
 import DataLoader from 'dataloader';
 import { Product, products } from './fixtures/products';
-import { ProductVariant, variants } from './fixtures/variants';
+import { ProductVariant } from './fixtures/variants';
 
 interface Context {
     loaders: {
@@ -19,5 +19,5 @@ export const resolvers = {
     Product: {
         // With data loader
         variants: async (parent: Product, _: unknown, { loaders }: Context) => loaders.variant.load(parent.id),
-    }
+    },
 }
