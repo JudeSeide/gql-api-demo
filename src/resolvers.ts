@@ -1,6 +1,5 @@
-import DataLoader from 'dataloader';
 import { Product, products } from './fixtures/products';
-import { ProductVariant, variants } from './fixtures/variants';
+import { variants } from './fixtures/variants';
 
 export const resolvers = {
     Query: {

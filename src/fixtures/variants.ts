@@ -1,5 +1,3 @@
-import DataLoader from 'dataloader';
-
 export type ProductVariant = {
     sku: string;
     size: string;
@@ -110,7 +108,3 @@ export const variants = {
         return productIds.map(productId => data.filter(variant => variant.productId === productId));
     },
 };
-
-export const buildProductVariantDataloader = () => new DataLoader<string, (ProductVariant | null)[]>(
-    async (keys: ReadonlyArray<string>) => variants.findAll(keys as string[]),
-);
