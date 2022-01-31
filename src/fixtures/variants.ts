@@ -1,4 +1,3 @@
-import { isEmpty } from 'lodash';
 import DataLoader from 'dataloader';
 
 export type ProductVariant = {
@@ -106,22 +105,12 @@ export const variants = {
         console.log('\x1b[33m', `select * from product_variants where product_id = ${productId}`);
         return data.filter(variant => variant.productId === productId);
     },
-    findAll: async (productIds?: string[], batched: boolean = false): Promise<(ProductVariant | null)[]> => {
-        if (isEmpty(productIds)) {
-            console.log('\x1b[33m', 'select * from product_variants');
-            return data;
-        }
-
+    findAll: async (productIds: string[]): Promise<(ProductVariant | null)[][]> => {
         console.log('\x1b[33m', 'select * from product_variants where product_id in', productIds);
-
-        if (batched) {
-            return productIds.map(productId => data.find(variant => variant.productId === productId) ?? null);
-        }
-
-        return data.filter(variant => productIds.includes(variant.productId));
+        return productIds.map(productId => data.filter(variant => variant.productId === productId));
     },
 };
 
-export const buildProductVariantDataloader = () => new DataLoader<string, ProductVariant | null>(
-    async (keys: ReadonlyArray<string>) => variants.findAll(keys as string[], true),
+export const buildProductVariantDataloader = () => new DataLoader<string, (ProductVariant | null)[]>(
+    async (keys: ReadonlyArray<string>) => variants.findAll(keys as string[]),
 );

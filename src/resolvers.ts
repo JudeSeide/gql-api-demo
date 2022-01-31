@@ -22,9 +22,9 @@ export const resolvers = {
     },
     Product: {
         // Without data loader
-        variants: async (product: Product) => variants.find(product.id),
+        variants: async (parent: Product) => variants.find(parent.id),
 
         // // With data loader
-        // variants: async (parent: Product, _: unknown, { loaders }: Context) => loaders.variant.loadMany([parent.id]),
+        // variants: async (parent: Product, _: unknown, { loaders }: Context) => loaders.variant.load(parent.id),
     }
 }
