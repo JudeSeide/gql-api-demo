@@ -18,6 +18,6 @@ export const resolvers = {
     },
     Product: {
         // With data loader
-        variants: async (parent: Product, _: unknown, { loaders }: Context) => loaders.variant.load(parent.id),
+        variants: async (parent: Product, _: unknown, ctx: Context) => ctx.loaders.variant.load(parent.id),
     },
 }
